@@ -1,7 +1,7 @@
 {
   "name": "Undo Skip",
   "description": "Adds an Undo toast after an accidental track skip and restores the previous track at the exact position.",
-  "preview": "assets/preview.png",
+  "preview": "assets/preview.jpg",
   "main": "undo-skip.js",
   "readme": "README.md",
   "authors": [
