@@ -87,9 +87,23 @@
             ...(item.images || []),
         ];
 
-        const url = candidates.find((img) => typeof img?.url === "string" && img.url)?.url
+        const url = candidates
+            .map((img) => (typeof img === "string" ? img : img?.url))
+            .find((candidate) => typeof candidate === "string" && candidate)
             || item.metadata?.image_url
             || "";
+
+        return normalizeImage(url);
+    }
+
+    function normalizeImage(url) {
+        if (typeof url !== "string" || !url) return "";
+
+        // Spotify's internal player state often exposes image IDs as
+        // `spotify:image:<id>` rather than an https URL.
+        if (url.startsWith("spotify:image:")) {
+            return `https://i.scdn.co/image/${url.slice("spotify:image:".length)}`;
+        }
 
         return /^https?:\/\//.test(url) ? url : "";
     }
@@ -557,7 +571,8 @@
             border-radius: 12px;
             overflow: hidden;
             color: var(--undo-text);
-            background: var(--undo-bg);
+            background-color: #181818;
+            background-image: linear-gradient(var(--undo-bg), var(--undo-bg));
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.35);
         }

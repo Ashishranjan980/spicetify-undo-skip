@@ -399,6 +399,22 @@ async function testPausedSkipRestoresPauseState() {
     assert.equal(h.app.paused, true, "restored track should stay paused");
 }
 
+async function testSpotifyImageUriIsNormalized() {
+    const track = makeTrack("C");
+    track.album.images = [{ url: "spotify:image:abc123" }];
+
+    const h = createHarness({ track, position: 20000 });
+    h.setTrack(B, { position: 0, index: 1 });
+
+    const toast = h.toastRoot();
+    assert.ok(toast.classList.contains("is-visible"), "toast should be visible");
+    assert.equal(
+        toast.querySelector(".undo-skip-art").src,
+        "https://i.scdn.co/image/abc123",
+        "spotify:image URIs should become CDN URLs",
+    );
+}
+
 async function testMenuTogglePersists() {
     const h = createHarness({ track: A, position: 100000 });
     const item = h.menuItem();
@@ -416,6 +432,7 @@ const tests = [
     testContextChangeDoesNotShowToast,
     testBackwardsNavigationDoesNotShowToast,
     testPausedSkipRestoresPauseState,
+    testSpotifyImageUriIsNormalized,
     testMenuTogglePersists,
 ];
 
