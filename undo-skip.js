@@ -571,10 +571,54 @@
             border-radius: 12px;
             overflow: hidden;
             color: var(--undo-text);
-            background-color: #181818;
-            background-image: linear-gradient(var(--undo-bg), var(--undo-bg));
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.35);
+
+            /* Glass: a translucent theme-tinted pane over the blurred
+               Spotify UI. The opaque color is the fallback for browsers
+               without color-mix() or backdrop-filter. */
+            background-color: #1c1f1d;
+            background-color: color-mix(in srgb, var(--undo-bg) 58%, transparent);
+            background-image:
+                linear-gradient(
+                    135deg,
+                    rgba(255, 255, 255, 0.15) 0%,
+                    rgba(255, 255, 255, 0.04) 38%,
+                    rgba(255, 255, 255, 0.015) 60%,
+                    rgba(255, 255, 255, 0.08) 100%
+                );
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            box-shadow:
+                0 24px 60px rgba(0, 0, 0, 0.55),
+                0 6px 18px rgba(0, 0, 0, 0.35),
+                inset 0 1px 0 rgba(255, 255, 255, 0.22),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.18);
+            -webkit-backdrop-filter: blur(22px) saturate(165%);
+            backdrop-filter: blur(22px) saturate(165%);
+        }
+
+        /* Soft highlight across the top edge, like light catching glass. */
+        #${TOAST_ID} .undo-skip-card::before {
+            content: "";
+            position: absolute;
+            inset: 0 0 auto 0;
+            height: 46%;
+            pointer-events: none;
+            background: linear-gradient(
+                180deg,
+                rgba(255, 255, 255, 0.1),
+                rgba(255, 255, 255, 0)
+            );
+        }
+
+        #${TOAST_ID} .undo-skip-card > :not(.undo-skip-life) {
+            position: relative;
+            z-index: 1;
+        }
+
+        @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+            #${TOAST_ID} .undo-skip-card {
+                background-color: #1c1f1d;
+                background-color: color-mix(in srgb, var(--undo-bg) 94%, black 6%);
+            }
         }
 
         #${TOAST_ID}.is-error .undo-skip-card {
