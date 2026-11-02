@@ -27,8 +27,10 @@ you left it.
 
 ### Spicetify Marketplace
 
-Search for **Undo Skip** in the Marketplace. New extensions start with no stars,
-so switch the Extensions sort to **Newest** if it does not appear immediately.
+Search for **Undo Skip** in the Marketplace and set the Extensions sort to
+**Newest**. If it does not appear, update Marketplace to **v1.0.12 or newer**:
+older versions only load the first 100 extensions, so a new zero-star repo can
+be missing from the list entirely.
 
 ### Manual
 
