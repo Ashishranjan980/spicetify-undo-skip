@@ -25,6 +25,11 @@ you left it.
 
 ## Install
 
+### Spicetify Marketplace
+
+Search for **Undo Skip** in the Marketplace. New extensions start with no stars,
+so switch the Extensions sort to **Newest** if it does not appear immediately.
+
 ### Manual
 
 ```bash
