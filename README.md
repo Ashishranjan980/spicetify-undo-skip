@@ -7,14 +7,7 @@ When a track change looks like a manual forward skip, a toast appears with an
 **Undo** button that takes you back to the previous track at the exact position
 you left it.
 
-```
-┌──────────────────────────────────────────────┐
-│ [art]  SKIPPED                               │
-│        Track Name                     UNDO   │
-│        Artist Name                           │
-│        ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬          │
-└──────────────────────────────────────────────┘
-```
+![Undo Skip toast in Spotify](assets/preview.png)
 
 ## Features
 
@@ -117,6 +110,8 @@ that is the file `watch` monitors.
 
 ```
 undo-skip.js              the extension
+manifest.json             Spicetify Marketplace metadata
+assets/preview.png        Marketplace preview image
 test/undo-skip.test.mjs   dependency-free smoke tests
 ```
 
